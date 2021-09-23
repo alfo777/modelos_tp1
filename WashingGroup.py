@@ -25,7 +25,11 @@ class WashingGroup:
             result.append(aGarment)
 
         self.garments.append(newGarment)
-        
+
+        print("grupo {}".format(self.id))
+        for g in self.garments:
+            print(g.nro)
+
         return result, True
 
     def checkIfItsBetterToInser(self,arrIncomp, aGarment):
@@ -39,7 +43,7 @@ class WashingGroup:
     def getGarments(self):
         r = []
         for g in self.garments:
-            r.append([g.nro, g.washTime])
+            r.append([g.nro, self.id])
 
         return r
             

@@ -63,11 +63,18 @@ class GarmentManager:
             lines.extend(g.getGarments())
 
         lines.sort()
-        print(lines)
+        
+        for l in lines:
+            resultFile.write("{} {}\n".format(l[0],l[1]))
+
         resultFile.close()
 
         
-
+    def washClothes(self):
+        self.createGarments()
+        self.sortGarments()
+        self.groupGarments()
+        self.createSolutionFile()
         
 
 
@@ -77,14 +84,4 @@ class GarmentManager:
 
 
 g = GarmentManager()
-g.createGarments()
-g.sortGarments()
-g.groupGarments()
-g.createSolutionFile()
-
-arr = [1, 2, 3, 4]
-for i in arr:
-    if i == 2:
-        arr.pop(2)
-
-print(arr)
+g.washClothes()
