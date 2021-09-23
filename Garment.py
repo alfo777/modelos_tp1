@@ -11,7 +11,7 @@ class Garment:
         self.incompatibleGarments.append(nroGarment)
 
     
-    def isInompatible(self, garment):
+    def isIncompatible(self, garment):
         return ( garment.nro in self.incompatibleGarments )
 
 
