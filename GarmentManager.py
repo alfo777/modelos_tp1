@@ -38,34 +38,38 @@ class GarmentManager:
     def groupGarments(self):
         self.groups = []
         i = 0
-        while( len(self.garments) != 0 ):
-            pushOuts = []          
+        while( len(self.garments) != 0 ):       
             i += 1
-            newGroup = WashingGroup(i)
-
-            for garment in self.garments[::-1]:
-                pushOuts, result = newGroup.addGament(garment)
-
-                if result:
-                    self.garments.remove(garment)
-                    
-                self.garments.extend(pushOuts)
-                
-            
+            newGroup = self.createGroup(i)      
             self.groups.append(newGroup)
                 
-                   
+
+    def createGroup(self, nro):
+        group = WashingGroup(nro)
+        pushOuts = []
+
+        for garment in self.garments[::-1]:
+            pushOuts, result = group.addGament(garment)
+
+            if result:
+                self.garments.remove(garment)
+                            
+            self.garments.extend(pushOuts)
+        
+        return group
+
+
 
     def createSolutionFile(self):
         resultFile = open('solucion.txt','w')
         lines = []
-        for g in self.groups:
-            lines.extend(g.getGarments())
+        for group in self.groups:
+            lines.extend(group.getGarments())
 
         lines.sort()
         
-        for l in lines:
-            resultFile.write("{} {}\n".format(l[0],l[1]))
+        for line in lines:
+            resultFile.write("{} {}\n".format(line[0],line[1]))
 
         resultFile.close()
 
@@ -79,9 +83,9 @@ class GarmentManager:
 
 
 
+def main():
+    g = GarmentManager()
+    g.washClothes()
 
 
-
-
-g = GarmentManager()
-g.washClothes()
+main()

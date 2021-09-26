@@ -17,8 +17,6 @@ class WashingGroup:
             elif ( self.garments[i].isIncompatible(newGarment) and self.garments[i].washTime <= newGarment.washTime ):
                 incompativilities.append(i)
 
-        if ( not self.checkIfItsBetterToInser(incompativilities, newGarment) ):
-            return [], False
 
         for i in incompativilities[::-1]:
             aGarment = self.garments.pop(i)
@@ -33,13 +31,6 @@ class WashingGroup:
         return result, True
 
 
-
-    def checkIfItsBetterToInser(self,arrIncomp, aGarment):
-        totalTime = 0
-        for i in arrIncomp:
-            totalTime += self.garments[i].washTime
-        
-        return aGarment.washTime > totalTime
 
     
     def getGarments(self):
