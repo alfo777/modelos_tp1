@@ -2,4 +2,4 @@
 
 Para ejecutar el programa ejecutar:
 
-python GarmentManager.py
+    python GarmentManager.py
